@@ -1,0 +1,21 @@
+/* Put your CSS here */
+html, body {
+    margin: 20px;
+}
+
+
+.navbar .nav > li > a.active {
+    color: black;
+    font-weight: bold;
+}
+
+
+div.about {
+  border-bottom: 1px solid #000;
+  margin-bottom: 10px;
+}
+
+div.about:last-of-type {
+  border-bottom: none;
+  margin-bottom: 5px;
+}
