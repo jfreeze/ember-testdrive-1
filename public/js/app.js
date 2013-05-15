@@ -2,10 +2,10 @@ App = Ember.Application.create();
 
 App.Store = DS.Store.extend({
   revision: 12,
-  adapter: 'DS.FixtureAdapter'
-//  adapter2: DS.RESTAdapter.extend({
-//      url: 'http://localhost:9393'
-//  })
+//  adapter: 'DS.FixtureAdapter'
+  adapter: DS.RESTAdapter.extend({
+      url: 'http://localhost:9393'
+  })
 });
 
 App.Router.map(function() {
@@ -28,7 +28,7 @@ App.PostController = Ember.ObjectController.extend({
   },
   doneEditing: function() {
     this.set('isEditing', false);
-//    this.get('store').commit();
+    this.get('store').commit();
   }
 });
 
@@ -46,21 +46,21 @@ App.Post = DS.Model.extend({
   publishedAt: DS.attr('date')
 });
 
-App.Post.FIXTURES = [{
-    id: 1,
-    title: "Rails is Omakase",
-    author: "dh2",
-    publishedAt: new Date('12-27-2012'),
-    intro: "This is the intro",
-    extended: "alsfj slkjfasl;f jasl;fj asl;fj as;lfj als;fj a;lsfj"
-},{
-    id: 2,
-    title: "The Parley Letter",
-    author: "dh3",
-    publishedAt: new Date('05-10-2013'),
-    intro: "More of This is the intro",
-    extended: "the **quick** brown _fox_ jumped over the ...\n\nHeader\n=\nHeader2\n-\nmore stufffj a;lsfj"
-}]
+//App.Post.FIXTURES = [{
+//    id: 1,
+//    title: "Rails is Omakase",
+//    author: "dh2",
+//    publishedAt: new Date('12-27-2012'),
+//    intro: "This is the intro",
+//    extended: "alsfj slkjfasl;f jasl;fj asl;fj as;lfj als;fj a;lsfj"
+//},{
+//    id: 2,
+//    title: "The Parley Letter",
+//    author: "dh3",
+//    publishedAt: new Date('05-10-2013'),
+//    intro: "More of This is the intro",
+//    extended: "the **quick** brown _fox_ jumped over the ...\n\nHeader\n=\nHeader2\n-\nmore stufffj a;lsfj"
+//}]
 
 Ember.Handlebars.registerBoundHelper('date', function(date) {
     return moment(date).fromNow();
@@ -70,4 +70,3 @@ var showdown = new Showdown.converter();
 Ember.Handlebars.registerBoundHelper('markdown', function(input) {
   return new Ember.Handlebars.SafeString(showdown.makeHtml(input));
 });
-
